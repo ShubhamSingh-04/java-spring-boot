@@ -1,4 +1,4 @@
-package com.shubham.SpringCore;
+package com.shubham.SpringCore.rest;
 
 import com.shubham.util.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +10,9 @@ public class DemoController {
     private Coach coach;
 
     @Autowired
-    DemoController(Coach coach){
-        this.coach = coach;
-    }
+ public void setCoach(Coach coach){
+     this.coach = coach;
+ }
 
     @GetMapping("/coachInstruction")
     public String getSpringInstruction(){
