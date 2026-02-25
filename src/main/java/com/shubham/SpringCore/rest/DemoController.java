@@ -11,7 +11,8 @@ public class DemoController {
     private Coach coach;
 
     @Autowired
- DemoController(Coach coach){
+ DemoController(Coach coach){ 
+        System.out.println("This class is now initialized: " + getClass().getSimpleName());
      this.coach = coach;
  }
 
