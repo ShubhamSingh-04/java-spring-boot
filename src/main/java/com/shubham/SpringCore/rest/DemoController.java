@@ -11,7 +11,7 @@ public class DemoController {
     private Coach coach;
 
     @Autowired
- DemoController(@Qualifier("springCoach") Coach coach){
+ DemoController(Coach coach){
      this.coach = coach;
  }
 
