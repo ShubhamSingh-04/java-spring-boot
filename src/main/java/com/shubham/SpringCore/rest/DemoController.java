@@ -13,7 +13,7 @@ public class DemoController {
     private Coach coach;
 
     @Autowired
- DemoController(@Qualifier("springCoach") Coach coach){
+ DemoController(@Qualifier("swimmer") Coach coach){
         System.out.println("This class is now initialized: " + getClass().getSimpleName());
         this.coach = coach;
  }
@@ -23,14 +23,4 @@ public class DemoController {
         return this.coach.getInstruction();
     }
 
-    @PostConstruct
-    public void doStartupStuff(){
-        System.out.println("doStartupStuff: " + getClass().getSimpleName());
-    }
-
-    // For "prototype" scoped beans, Spring does not call the destroy method. You must manually destroy it
-    @PreDestroy
-    public void doDestroyStuff(){
-        System.out.println("doDestroyStuff(): " + getClass().getSimpleName());
-    }
 }
