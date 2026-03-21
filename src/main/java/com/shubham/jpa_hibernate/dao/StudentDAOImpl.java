@@ -2,9 +2,12 @@ package com.shubham.jpa_hibernate.dao;
 
 import com.shubham.jpa_hibernate.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO{
@@ -30,6 +33,21 @@ public class StudentDAOImpl implements StudentDAO{
     @Override
     public Student findById(Integer id){
         return theEntityManager.find(Student.class, id);
+    }
 
+    @Override
+    public List<Student> findAll(){
+        TypedQuery<Student> theQuery = theEntityManager.createQuery("from Student order by lastName", Student.class);
+
+        return theQuery.getResultList();
+    }
+
+    @Override
+    public List<Student> findByFname(String firstName) {
+        TypedQuery<Student> theQuery = theEntityManager.createQuery("from Student where firstName=:fName", Student.class);
+
+        theQuery.setParameter("fName", firstName);
+
+        return theQuery.getResultList();
     }
 }

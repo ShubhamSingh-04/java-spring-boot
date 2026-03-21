@@ -21,8 +21,25 @@ public class JpaHibernateApplication {
 
 //			createMultipleStudents(studentDAO);
 
-			findStudentById(studentDAO, 2);
+//			findStudentById(studentDAO, 2);
+
+//			findAllStudents(studentDAO);
+
+			findStudentByFname(studentDAO, "Shubham");
 		};
+	}
+
+	private void findStudentByFname(StudentDAO studentDAO, String fName){
+		for(Student s : studentDAO.findByFname(fName)){
+			System.out.println(s);
+		}
+		System.out.println("End of findStudentByFname()");
+	}
+
+	private void findAllStudents(StudentDAO studentDAO) {
+		for(Student s : studentDAO.findAll()){
+			System.out.println(s);
+		}
 	}
 
 	private void findStudentById(StudentDAO studentDAO, int id) {
