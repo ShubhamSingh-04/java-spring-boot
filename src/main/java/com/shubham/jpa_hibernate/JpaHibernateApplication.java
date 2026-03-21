@@ -19,8 +19,21 @@ public class JpaHibernateApplication {
 		return runner ->{
 //			createStudent(studentDAO);
 
-			createMultipleStudents(studentDAO);
+//			createMultipleStudents(studentDAO);
+
+			findStudentById(studentDAO, 2);
 		};
+	}
+
+	private void findStudentById(StudentDAO studentDAO, int id) {
+		System.out.println("Fetching the record with id: " + id);
+		Student student = studentDAO.findById(id);
+
+		if(student != null)
+			System.out.println(student);
+		else
+			System.out.println("No Student found with id: " + id);
+
 	}
 
 	private void createMultipleStudents(StudentDAO studentDAO) {
