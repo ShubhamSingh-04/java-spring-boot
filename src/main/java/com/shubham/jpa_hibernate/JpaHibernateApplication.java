@@ -29,8 +29,31 @@ public class JpaHibernateApplication {
 
 //			updateStudent(studentDAO, 2);
 
-			setStudentEmailNull(studentDAO); // set all rows email null
+//			setStudentEmailNull(studentDAO); // set all rows email null
+
+//			deleteStudent(studentDAO, 4);
+
+			deleteAllStudents(studentDAO);
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		int rowsAffected = studentDAO.deleteAll();
+		System.out.println("Rows Affected: " + rowsAffected);
+
+		System.out.println("deleteAllStudents() executed");
+	}
+
+	private void deleteStudent(StudentDAO studentDAO, int id){
+//		THIS WILL NOT WORK AS THE STUDENT OBJECT IS DETACHED FROM THE DB
+//		studentDAO.delete(
+//				findStudentById(studentDAO, 3)
+//		);
+
+		int rowsAffected = studentDAO.deleteById(id);
+		System.out.println("Rows Affected: " + rowsAffected);
+
+		System.out.println("deleteStudent() executed");
 	}
 
 	// updates all rows

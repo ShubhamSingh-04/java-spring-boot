@@ -62,11 +62,39 @@ public class StudentDAOImpl implements StudentDAO{
     @Transactional
     // updates all the rows
     public int updateEmailNull(){
-//        Query theQuery = theEntityManager.createQuery("update Student set email=NULL");
-//
-//        return theQuery.executeUpdate();
+        Query theQuery = theEntityManager.createQuery("update Student set email=NULL");
 
-        return theEntityManager.createQuery("update Student set email=NULL")
-                .executeUpdate();
+        return theQuery.executeUpdate(); // returns number of rows updated
+
+//        return theEntityManager.createQuery("update Student set email=NULL")
+//                .executeUpdate();
     }
+
+    @Override
+    @Transactional
+    public void delete(Student student) {
+        theEntityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public int deleteById(int id) {
+        Query theQuery = theEntityManager.createQuery("delete from Student where id=:theId");
+        theQuery.setParameter("theId", id);
+
+        // returns void
+//        theEntityManager.remove(
+//                theEntityManager.find(Student.class, id)
+//        );
+
+        return theQuery.executeUpdate(); // returns number of rows affected
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll(){
+        return theEntityManager.createQuery("delete from Student").executeUpdate();
+    }
+
+
 }
