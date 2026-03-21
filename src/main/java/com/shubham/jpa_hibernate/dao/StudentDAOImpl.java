@@ -2,6 +2,7 @@ package com.shubham.jpa_hibernate.dao;
 
 import com.shubham.jpa_hibernate.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,23 @@ public class StudentDAOImpl implements StudentDAO{
         theQuery.setParameter("fName", firstName);
 
         return theQuery.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void update(Student student){
+        theEntityManager.merge(student);
+    }
+
+    @Override
+    @Transactional
+    // updates all the rows
+    public int updateEmailNull(){
+//        Query theQuery = theEntityManager.createQuery("update Student set email=NULL");
+//
+//        return theQuery.executeUpdate();
+
+        return theEntityManager.createQuery("update Student set email=NULL")
+                .executeUpdate();
     }
 }

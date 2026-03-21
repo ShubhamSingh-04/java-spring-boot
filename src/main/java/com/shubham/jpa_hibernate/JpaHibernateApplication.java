@@ -25,8 +25,29 @@ public class JpaHibernateApplication {
 
 //			findAllStudents(studentDAO);
 
-			findStudentByFname(studentDAO, "Shubham");
+//			findStudentByFname(studentDAO, "Shubham");
+
+//			updateStudent(studentDAO, 2);
+
+			setStudentEmailNull(studentDAO); // set all rows email null
 		};
+	}
+
+	// updates all rows
+	private void setStudentEmailNull(StudentDAO studentDAO)
+	{
+		int rowsAffected = studentDAO.updateEmailNull();
+		System.out.println("Rows Affected: " + rowsAffected);
+	}
+
+	private void updateStudent(StudentDAO studentDAO, int id) {
+		Student s = findStudentById(studentDAO, id);
+
+		s.setEmail("newEmail@gmail.com");
+
+		studentDAO.update(s);
+
+		findStudentById(studentDAO, id);
 	}
 
 	private void findStudentByFname(StudentDAO studentDAO, String fName){
@@ -42,7 +63,7 @@ public class JpaHibernateApplication {
 		}
 	}
 
-	private void findStudentById(StudentDAO studentDAO, int id) {
+	private Student findStudentById(StudentDAO studentDAO, int id) {
 		System.out.println("Fetching the record with id: " + id);
 		Student student = studentDAO.findById(id);
 
@@ -50,6 +71,9 @@ public class JpaHibernateApplication {
 			System.out.println(student);
 		else
 			System.out.println("No Student found with id: " + id);
+
+
+		return student;
 
 	}
 
