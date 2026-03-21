@@ -17,14 +17,30 @@ public class JpaHibernateApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner ->{
-			createStudent(studentDAO);
+//			createStudent(studentDAO);
+
+			createMultipleStudents(studentDAO);
 		};
+	}
+
+	private void createMultipleStudents(StudentDAO studentDAO) {
+		Student temp = new Student("John", "Kennedy", "jk@gmail.com");
+
+		Student temp2 = new Student("Ana", "De Armas", "ana@gmail.com");
+
+		Student temp3 = new Student("Tyrion", "Lannister", "lannister@gmail.com");
+
+		System.out.println("Saving Multiple objects");
+
+		studentDAO.save(temp);
+		studentDAO.save(temp2);
+		studentDAO.save(temp3);
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
 		// create student object
 		System.out.println("Creating student object");
-		Student temp = new Student("Shubham", "Singh", "shubhamsinghmyss@gmail.com");
+		Student temp = new Student("Shubham", "Singh", "shubhamsinghmys@gmail.com");
 
 		// save the student object
 		studentDAO.save(temp);
