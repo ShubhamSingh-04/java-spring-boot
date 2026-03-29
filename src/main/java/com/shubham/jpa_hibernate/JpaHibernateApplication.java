@@ -19,7 +19,7 @@ public class JpaHibernateApplication {
 		return runner ->{
 //			createStudent(studentDAO);
 
-//			createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 
 //			findStudentById(studentDAO, 2);
 
@@ -33,7 +33,7 @@ public class JpaHibernateApplication {
 
 //			deleteStudent(studentDAO, 4);
 
-			deleteAllStudents(studentDAO);
+//			deleteAllStudents(studentDAO);
 		};
 	}
 
