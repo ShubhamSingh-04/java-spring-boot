@@ -1,4 +1,4 @@
-package com.shubham.rest_curd.rest_controller;
+package com.shubham.rest_curd.rest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
